@@ -7,6 +7,43 @@
     <!-- Tailwind CSS CDN pour un design premium rapide -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 0;
+            border-radius: 24px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .variant-option {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .variant-option.selected {
+            border-color: #4f46e5 !important;
+            background-color: #eef2ff !important;
+        }
+    </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans">
 
@@ -108,7 +145,7 @@
                     <p class="text-sm text-slate-600 mb-4">Processeur M3 Pro, 18GB RAM, 512GB SSD</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">2 499€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('macbook')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -126,7 +163,7 @@
                     <p class="text-sm text-slate-600 mb-4">Intel i9, 32GB RAM, RTX 4080, 1TB NVMe</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">1 899€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('pc-gaming')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -144,7 +181,7 @@
                     <p class="text-sm text-slate-600 mb-4">4K UHD, USB-C, HDR, 99% sRGB</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">699€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('ecran')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -162,7 +199,7 @@
                     <p class="text-sm text-slate-600 mb-4">Switch Cherry MX, RGB, Sans fil</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">149€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('clavier')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -180,7 +217,7 @@
                     <p class="text-sm text-slate-600 mb-4">25 000 DPI, Sans fil, RGB, Ergonomique</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">79€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('souris')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -198,7 +235,7 @@
                     <p class="text-sm text-slate-600 mb-4">Réduction bruit active, Sans fil, 40h autonomie</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">299€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('casque')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -216,7 +253,7 @@
                     <p class="text-sm text-slate-600 mb-4">4K 60fps, Autofocus, Micro intégré</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">199€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('webcam')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -234,7 +271,7 @@
                     <p class="text-sm text-slate-600 mb-4">USB-C 3.2, 1050 MB/s, Portable</p>
                     <div class="flex items-center justify-between">
                         <span class="text-2xl font-bold text-indigo-600">249€</span>
-                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
+                        <button onclick="openModal('ssd')" class="px-4 py-2 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition text-sm font-semibold">
                             <i class="fa-solid fa-cart-shopping mr-2"></i>Acheter
                         </button>
                     </div>
@@ -264,6 +301,480 @@
         </div>
     </div>
 </footer>
+
+<!-- Modals pour chaque produit -->
+
+<!-- Modal MacBook -->
+<div id="modal-macbook" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">MacBook Pro 16"</h2>
+                <button onclick="closeModal('macbook')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=600&q=80" alt="MacBook Pro" class="rounded-xl w-full">
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Choisir la puce :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 2499)">
+                                <div class="font-bold">M3 Pro</div>
+                                <div class="text-sm text-slate-600">12 cœurs CPU, 18 cœurs GPU</div>
+                                <div class="text-indigo-600 font-bold mt-2">2 499€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 2999)">
+                                <div class="font-bold">M3 Max</div>
+                                <div class="text-sm text-slate-600">14 cœurs CPU, 30 cœurs GPU</div>
+                                <div class="text-indigo-600 font-bold mt-2">2 999€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Mémoire RAM :</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 0)">
+                                <div class="font-bold">18 GB</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 200)">
+                                <div class="font-bold">36 GB</div>
+                                <div class="text-xs text-slate-600">+200€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 400)">
+                                <div class="font-bold">64 GB</div>
+                                <div class="text-xs text-slate-600">+400€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Stockage :</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 0)">
+                                <div class="font-bold">512 GB</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 200)">
+                                <div class="font-bold">1 TB</div>
+                                <div class="text-xs text-slate-600">+200€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 400)">
+                                <div class="font-bold">2 TB</div>
+                                <div class="text-xs text-slate-600">+400€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 800)">
+                                <div class="font-bold">4 TB</div>
+                                <div class="text-xs text-slate-600">+800€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-macbook" class="text-3xl font-bold text-indigo-600">2 499€</span>
+                        </div>
+                        <button onclick="addToCart('MacBook Pro 16')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal PC Gaming -->
+<div id="modal-pc-gaming" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">PC Gaming Professionnel</h2>
+                <button onclick="closeModal('pc-gaming')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c?auto=format&fit=crop&w=600&q=80" alt="PC Gaming" class="rounded-xl w-full">
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Carte graphique :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 1599)">
+                                <div class="font-bold">RTX 4070 Ti</div>
+                                <div class="text-indigo-600 font-bold mt-2">1 599€</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 1899)">
+                                <div class="font-bold">RTX 4080</div>
+                                <div class="text-indigo-600 font-bold mt-2">1 899€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 2299)">
+                                <div class="font-bold">RTX 4090</div>
+                                <div class="text-indigo-600 font-bold mt-2">2 299€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">RAM :</h3>
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, -100)">
+                                <div class="font-bold">16 GB</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 0)">
+                                <div class="font-bold">32 GB</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 150)">
+                                <div class="font-bold">64 GB</div>
+                                <div class="text-xs text-slate-600">+150€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Stockage :</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 0)">
+                                <div class="font-bold">1 TB NVMe</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-3 text-center" onclick="selectVariant(this, 100)">
+                                <div class="font-bold">2 TB NVMe</div>
+                                <div class="text-xs text-slate-600">+100€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-pc-gaming" class="text-3xl font-bold text-indigo-600">1 899€</span>
+                        </div>
+                        <button onclick="addToCart('PC Gaming RTX')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Écran -->
+<div id="modal-ecran" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">Écran Professionnel</h2>
+                <button onclick="closeModal('ecran')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=600&q=80" alt="Écran" class="rounded-xl w-full">
+                </div>
+                
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Taille :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 499)">
+                                <div class="font-bold">27" 4K UHD</div>
+                                <div class="text-indigo-600 font-bold mt-2">499€</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 699)">
+                                <div class="font-bold">32" 4K UHD</div>
+                                <div class="text-indigo-600 font-bold mt-2">699€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 999)">
+                                <div class="font-bold">34" Ultrawide 5K</div>
+                                <div class="text-indigo-600 font-bold mt-2">999€</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-ecran" class="text-3xl font-bold text-indigo-600">699€</span>
+                        </div>
+                        <button onclick="addToCart('Écran Dell UltraSharp')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modals simplifiés pour les autres produits -->
+<div id="modal-clavier" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">Clavier Mécanique</h2>
+                <button onclick="closeModal('clavier')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1585792180666-f7347c490ee2?auto=format&fit=crop&w=600&q=80" alt="Clavier" class="rounded-xl w-full">
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Type de switch :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 149)">
+                                <div class="font-bold">Cherry MX Red (Linéaire)</div>
+                                <div class="text-indigo-600 font-bold mt-2">149€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 149)">
+                                <div class="font-bold">Cherry MX Brown (Tactile)</div>
+                                <div class="text-indigo-600 font-bold mt-2">149€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 159)">
+                                <div class="font-bold">Cherry MX Blue (Clicky)</div>
+                                <div class="text-indigo-600 font-bold mt-2">159€</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-clavier" class="text-3xl font-bold text-indigo-600">149€</span>
+                        </div>
+                        <button onclick="addToCart('Clavier Mécanique RGB')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-souris" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">Souris Gaming</h2>
+                <button onclick="closeModal('souris')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1625948515291-69613efd103f?auto=format&fit=crop&w=600&q=80" alt="Souris" class="rounded-xl w-full">
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Modèle :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 59)">
+                                <div class="font-bold">Gaming Pro Lite (Filaire)</div>
+                                <div class="text-indigo-600 font-bold mt-2">59€</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 79)">
+                                <div class="font-bold">Gaming Pro (Sans fil)</div>
+                                <div class="text-indigo-600 font-bold mt-2">79€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 129)">
+                                <div class="font-bold">Gaming Pro Max (Sans fil Premium)</div>
+                                <div class="text-indigo-600 font-bold mt-2">129€</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-souris" class="text-3xl font-bold text-indigo-600">79€</span>
+                        </div>
+                        <button onclick="addToCart('Souris Gaming Pro')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-casque" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">Casque Audio</h2>
+                <button onclick="closeModal('casque')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?auto=format&fit=crop&w=600&q=80" alt="Casque" class="rounded-xl w-full">
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Version :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 199)">
+                                <div class="font-bold">Studio Standard</div>
+                                <div class="text-indigo-600 font-bold mt-2">199€</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 299)">
+                                <div class="font-bold">Studio Premium (ANC)</div>
+                                <div class="text-indigo-600 font-bold mt-2">299€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 399)">
+                                <div class="font-bold">Studio Max (ANC + Spatial Audio)</div>
+                                <div class="text-indigo-600 font-bold mt-2">399€</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-casque" class="text-3xl font-bold text-indigo-600">299€</span>
+                        </div>
+                        <button onclick="addToCart('Casque Studio Premium')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-webcam" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">Webcam Professionnelle</h2>
+                <button onclick="closeModal('webcam')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=600&q=80" alt="Webcam" class="rounded-xl w-full">
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Résolution :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 99)">
+                                <div class="font-bold">Full HD 1080p 30fps</div>
+                                <div class="text-indigo-600 font-bold mt-2">99€</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 199)">
+                                <div class="font-bold">4K 60fps</div>
+                                <div class="text-indigo-600 font-bold mt-2">199€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 299)">
+                                <div class="font-bold">4K 120fps Pro</div>
+                                <div class="text-indigo-600 font-bold mt-2">299€</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-webcam" class="text-3xl font-bold text-indigo-600">199€</span>
+                        </div>
+                        <button onclick="addToCart('Webcam 4K Pro')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-ssd" class="modal">
+    <div class="modal-content">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-slate-900">SSD Externe</h2>
+                <button onclick="closeModal('ssd')" class="text-slate-400 hover:text-slate-900 text-2xl">&times;</button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=600&q=80" alt="SSD" class="rounded-xl w-full">
+                </div>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Capacité :</h3>
+                        <div class="space-y-2">
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 149)">
+                                <div class="font-bold">1 TB</div>
+                                <div class="text-indigo-600 font-bold mt-2">149€</div>
+                            </div>
+                            <div class="variant-option selected border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 249)">
+                                <div class="font-bold">2 TB</div>
+                                <div class="text-indigo-600 font-bold mt-2">249€</div>
+                            </div>
+                            <div class="variant-option border-2 border-slate-200 rounded-xl p-4" onclick="selectVariant(this, 449)">
+                                <div class="font-bold">4 TB</div>
+                                <div class="text-indigo-600 font-bold mt-2">449€</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xl font-semibold">Prix total :</span>
+                            <span id="total-price-ssd" class="text-3xl font-bold text-indigo-600">249€</span>
+                        </div>
+                        <button onclick="addToCart('SSD Externe')" class="w-full py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Ajouter au panier
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function openModal(productId) {
+    document.getElementById('modal-' + productId).classList.add('active');
+}
+
+function closeModal(productId) {
+    document.getElementById('modal-' + productId).classList.remove('active');
+}
+
+function selectVariant(element, price) {
+    // Remove selected class from siblings
+    const siblings = element.parentElement.querySelectorAll('.variant-option');
+    siblings.forEach(s => s.classList.remove('selected'));
+    
+    // Add selected class to clicked element
+    element.classList.add('selected');
+    
+    // Update total price if price parameter is provided
+    if (price !== undefined) {
+        const modal = element.closest('.modal');
+        const priceElement = modal.querySelector('[id^="total-price-"]');
+        if (priceElement) {
+            priceElement.textContent = price + '€';
+        }
+    }
+}
+
+function addToCart(productName) {
+    const modal = event.target.closest('.modal');
+    const price = modal.querySelector('[id^="total-price-"]').textContent;
+    alert('✅ ' + productName + ' ajouté au panier!\nPrix: ' + price + '\n\nMerci pour votre commande!');
+    modal.classList.remove('active');
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.classList.remove('active');
+    }
+}
+</script>
 
 </body>
 </html>
