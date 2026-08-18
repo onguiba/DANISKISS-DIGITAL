@@ -1,518 +1,104 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chris Smith - Professional Web Developer Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #a855f7;
-            --primary-dark: #9333ea;
-            --secondary: #ec4899;
-            --text-dark: #ffffff;
-            --text-light: #cbd5e1;
-            --bg-dark: #0f0f23;
-            --bg-card: #1a1a2e;
-            --white: #ffffff;
-            --border: #2d2d44;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--bg-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(15, 15, 35, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--white);
-        }
-        
-        .logo span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: var(--text-light);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(168, 85, 247, 0.3);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 160px 0 100px;
-            background: var(--bg-dark);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--white);
-        }
-
-        .hero-content h1 span {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-content .subtitle {
-            color: var(--primary);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .hero-content p {
-            font-size: 1.125rem;
-            color: var(--text-light);
-            margin-bottom: 2.5rem;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
-            border: 3px solid var(--primary);
-        }
-        
-        .stats {
-            position: absolute;
-            background: var(--bg-card);
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .stats h3 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.25rem;
-        }
-        
-        .stats p {
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: var(--bg-dark);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-        
-        .section-header h2::before {
-            content: '🎯 ';
-        }
-
-        .section-header p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 2.5rem;
-            border-radius: 12px;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
-            transform: scaleX(0);
-            transition: var(--transition);
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
-            border-color: var(--primary);
-        }
-
-        .service-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            color: var(--white);
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background-color: var(--bg-dark);
-        }
-
-        .contact-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-info h2 {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .contact-info p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-            background: var(--bg-dark);
-            color: var(--white);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            height: 120px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--bg-card);
-            color: var(--white);
-            padding: 3rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-
-        footer p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .hero-grid, .contact-box, .services-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.75rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
+    <title>Daniskiss Digital | Agence & Solutions Numériques Professionnelles</title>
+    <!-- Tailwind CSS CDN pour un design premium rapide -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container navbar">
-            <a href="#" class="logo">Chris<span>Smith</span></a>
-            <nav class="nav-links">
-                <a href="#accueil">Home</a>
-                <a href="#services">Services</a>
-                <a href="#contact">Contact</a>
-            </nav>
-            <a href="#contact" class="btn">Start a Project</a>
-        </div>
-    </header>
+<body class="bg-slate-50 text-slate-800 font-sans">
 
-    <!-- Hero Section -->
-    <section id="accueil" class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <p class="subtitle">I AM - Web Developer</p>
-                <h1>Maximize Your Business <span>Potential</span> with Custom Web Development <span>Solutions!</span></h1>
-                <p>Transform your digital presence with cutting-edge web solutions. I specialize in creating responsive and user-friendly applications.</p>
-                <a href="#contact" class="btn">Start Project</a>
-            </div>
-            <div class="hero-image" style="position: relative;">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Professional Web Developer" style="border-radius: 50%; width: 400px; height: 400px; object-fit: cover; border: 5px solid; border-image: linear-gradient(135deg, #a855f7, #ec4899) 1;">
-                <div class="stats" style="top: 10%; right: -10%; background: linear-gradient(135deg, #a855f7, #ec4899);">
-                    <h3>130+</h3>
-                    <p>Projects</p>
-                </div>
-                <div class="stats" style="bottom: 20%; left: -10%;">
-                    <h3>30+</h3>
-                    <p>Clients</p>
-                </div>
-            </div>
+<!-- En-tête / Navigation -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl font-black tracking-tight text-indigo-600">DANISKISS<span class="text-slate-900">.DIGITAL</span></span>
         </div>
-    </section>
+        <nav class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+            <a href="#services" class="hover:text-indigo-600 transition">Services</a>
+            <a href="#expertises" class="hover:text-indigo-600 transition">Formations & Marché</a>
+            <a href="#apropos" class="hover:text-indigo-600 transition">À propos</a>
+            <a href="#contact" class="px-5 py-2.5 bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition">Nous contacter</a>
+        </nav>
+    </div>
+</header>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>My Services</h2>
-                <p>I am a skilled web developer with expertise in modern responsive and user-friendly applications. My passion for coding drives me to deliver high-quality solutions.</p>
-            </div>
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Web Application</h3>
-                    <p>Full-stack responsive web applications using the latest technologies and modern design trends for optimal user experience.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Learn More →</a>
-                </div>
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon">🚀</div>
-                    <h3>Web Development</h3>
-                    <p>I can develop a responsive and user-friendly interface using a wide range of technologies for modern web applications.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Learn More →</a>
-                </div>
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>App Development</h3>
-                    <p>I can develop a responsive mobile application that works perfectly across all devices and platforms.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Learn More →</a>
-                </div>
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-icon">🗄️</div>
-                    <h3>Database Management</h3>
-                    <p>I can perform a wide variety of CRUD activities using modern database technologies and optimization techniques.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Learn More →</a>
-                </div>
-                <!-- Service 5 -->
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Data Analysis</h3>
-                    <p>I can perform a meticulous or massive query to solve business data challenges and provide actionable insights.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Learn More →</a>
-                </div>
-                <!-- Service 6 -->
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
-                    <h3>Web Design</h3>
-                    <p>I can design a responsive and modern UI/UX for web applications with a focus on user experience and aesthetics.</p>
-                    <a href="#" style="color: var(--primary); font-weight: 600; display: inline-block; margin-top: 1rem;">Learn More →</a>
-                </div>
+<!-- Section Héro (Première impression claire et premium) -->
+<section class="relative py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-white to-slate-100">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-600 border border-indigo-100">
+                <i class="fa-solid fa-bolt mr-2"></i> Propulsez votre carrière & vos projets
+            </span>
+            <h1 class="text-4xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+                L'excellence digitale au service de <span class="text-indigo-600">vos ambitions</span>.
+            </h1>
+            <p class="text-lg text-slate-600 leading-relaxed">
+                Nous accompagnons les talents et les entreprises à répondre aux exigences du marché de l'emploi actuel grâce à des solutions numériques de pointe et des compétences ultra-recherchées.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                <a href="#contact" class="px-8 py-4 bg-indigo-600 text-white font-semibold rounded-2xl shadow-xl shadow-indigo-200 hover:bg-indigo-700 text-center transition">Démarrer un projet</a>
+                <a href="#services" class="px-8 py-4 bg-white border border-slate-200 text-slate-700 font-semibold rounded-2xl hover:bg-slate-50 text-center transition">Explorer nos offres</a>
             </div>
         </div>
-    </section>
+        <!-- Image authentique et premium -->
+        <div class="relative">
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-3xl blur-xl opacity-25"></div>
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80" alt="Équipe professionnelle en réunion stratégique numérique" class="relative rounded-3xl shadow-2xl object-cover w-full h-[450px]">
+        </div>
+    </div>
+</section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-box">
-                <div class="contact-info">
-                    <h2>Let's Discuss Your Vision</h2>
-                    <p>Have a project in mind or want to modernize your digital presence? Fill out this form and I'll get back to you within 24 hours.</p>
-                    <p><strong>Email:</strong> contact@chrissmith-dev.com</p>
-                    <p><strong>Phone:</strong> +33 1 23 45 67 89</p>
+<!-- Section Services & Besoins du Marché -->
+<section id="services" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+            <h2 class="text-3xl lg:text-4xl font-bold text-slate-900">Adapté aux standards du marché</h2>
+            <p class="text-slate-600">Des solutions concrètes taillées pour répondre aux compétences recherchées par les recruteurs et les entreprises modernes.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Carte 1 -->
+            <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl transition group">
+                <div class="w-14 h-14 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-code"></i>
                 </div>
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" placeholder="John Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" placeholder="john@example.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" placeholder="Tell me about your project..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
-                </form>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Développement Web & App</h3>
+                <p class="text-slate-600 leading-relaxed">Maîtrise des technologies de pointe (React, Node.js, Cloud) fortement plébiscitées par les recruteurs tech.</p>
+            </div>
+            <!-- Carte 2 -->
+            <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl transition group">
+                <div class="w-14 h-14 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Marketing Digital & Growth</h3>
+                <p class="text-slate-600 leading-relaxed">Stratégies d'acquisition, SEO et analyse de données indispensables pour la visibilité des entreprises.</p>
+            </div>
+            <!-- Carte 3 -->
+            <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-xl transition group">
+                <div class="w-14 h-14 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-xl font-bold mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Consulting & Carrière</h3>
+                <p class="text-slate-600 leading-relaxed">Accompagnement personnalisé pour aligner profil professionnel et opportunités à forte valeur ajoutée.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Chris Smith. All rights reserved.</p>
+<!-- Pied de page -->
+<footer class="bg-slate-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <span class="text-xl font-black tracking-tight">DANISKISS<span class="text-indigo-400">.DIGITAL</span></span>
+        <p class="text-slate-400 text-sm">© 2026 Daniskiss Digital. Tous droits réservés.</p>
+        <div class="flex space-x-4 text-slate-400">
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin text-lg"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-twitter text-lg"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-github text-lg"></i></a>
         </div>
-    </footer>
+    </div>
+</footer>
+
 </body>
 </html>
